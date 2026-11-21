@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Deploy: publish this file as projet.html on Netlify or Vercel. For a root URL, rename it to index.html. -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>OPERATION EMY — TOP SECRET</title>
+<meta name="description" content="Classified mission. Authorized personnel only." />
+<meta name="theme-color" content="#05060f" />
+<meta property="og:title" content="OPERATION EMY — TOP SECRET" />
+<meta property="og:description" content="You have been selected for a classified mission. Accept?" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🎂</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Orbitron:wght@600;800;900&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   BASE
+   ============================================================ */
+:root{
+  --navy:#070a1c;
+  --purple:#1b1040;
+  --blue:#38e8ff;
+  --pink:#ff4ecd;
+  --yellow:#ffe14d;
+  --green:#4dffa6;
+  --red:#ff3b5c;
+  --text:#e8eeff;
+  --muted:#94a2c9;
+  --glass:rgba(255,255,255,.055);
+  --stroke:rgba(255,255,255,.13);
+  --radius:20px;
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  min-height:100dvh;
+  font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--text);
+  background:#05060f;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-3;
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(92,44,190,.55), transparent 62%),
+    radial-gradient(900px 620px at 92% 8%, rgba(255,78,205,.20), transparent 62%),
+    radial-gradient(900px 900px at 50% 118%, rgba(56,232,255,.16), transparent 62%),
+    linear-gradient(180deg,#070a1c 0%, #05060f 100%);
+}
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(140,180,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140,180,255,.045) 1px, transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 10%, transparent 78%);
+          mask-image: radial-gradient(circle at 50% 40%, #000 10%, transparent 78%);
+  animation: gridDrift 40s linear infinite;
+}
+@keyframes gridDrift{ to{ background-position:64px 64px, 64px 64px; } }
+
+#stars{ position:fixed; inset:0; z-index:-1; pointer-events:none; }
+#fx{ position:fixed; inset:0; z-index:60; pointer-events:none; }
+.warm-wash{
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0;
+  background:
+    radial-gradient(ellipse at 50% 34%, rgba(245,204,165,.32), transparent 58%),
+    radial-gradient(ellipse at 8% 95%, rgba(206,139,128,.25), transparent 56%),
+    radial-gradient(ellipse at 92% 8%, rgba(187,138,143,.16), transparent 58%),
+    linear-gradient(180deg, rgba(37,25,38,.22), rgba(31,24,28,.58));
+  transition:opacity 2.4s ease;
+}
+.warm-wash.active{ opacity:1; }
+
+::selection{ background:rgba(255,78,205,.4); color:#fff; }
+
+/* ============================================================
+   LAYOUT / SCENES
+   ============================================================ */
+.scene{
+  position:relative; z-index:2;
+  min-height:100dvh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:clamp(18px,4vw,56px) clamp(14px,4vw,40px);
+  animation: sceneIn .72s cubic-bezier(.16,.84,.3,1) both;
+}
+@keyframes sceneIn{
+  from{ opacity:0; transform:translateY(26px) scale(.986); filter:blur(8px); }
+  to  { opacity:1; transform:none; filter:blur(0); }
+}
+.wrap{ width:min(900px,100%); }
+.wrap-sm{ width:min(680px,100%); }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.mono{ font-family:'Orbitron',monospace; letter-spacing:.16em; text-transform:uppercase; }
+h1,h2,h3{ margin:0; font-family:'Orbitron',sans-serif; letter-spacing:.06em; line-height:1.1; }
+.h-hero{ font-size:clamp(30px,7vw,64px); font-weight:900; }
+.h-sec{ font-size:clamp(20px,4vw,34px); font-weight:800; }
+.lead{ font-size:clamp(15px,2.1vw,18px); color:var(--muted); line-height:1.65; font-weight:300; }
+.tiny{ font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); }
+
+.glow-blue{ color:var(--blue); text-shadow:0 0 24px rgba(56,232,255,.55); }
+.glow-pink{ color:var(--pink); text-shadow:0 0 24px rgba(255,78,205,.55); }
+.glow-yellow{ color:var(--yellow); text-shadow:0 0 24px rgba(255,225,77,.5); }
+.scene h1[tabindex="-1"]:focus-visible,
+.scene h2[tabindex="-1"]:focus-visible{ outline:2px solid rgba(255,225,77,.7); outline-offset:8px; border-radius:4px; }
+
+/* ============================================================
+   GLASS CARD
+   ============================================================ */
+.glass{
+  position:relative;
+  background: linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.028));
+  border:1px solid var(--stroke);
+  border-radius:var(--radius);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 24px 70px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.16);
+  padding: clamp(20px,4vw,38px);
+  overflow:hidden;
+}
+.glass::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(600px 220px at 10% -10%, rgba(56,232,255,.18), transparent 70%);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  border:0; cursor:pointer; overflow:hidden;
+  font-family:'Orbitron',sans-serif; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  font-size:clamp(12px,1.7vw,14px);
+  padding:18px 36px; border-radius:14px; color:#04070f;
+  background:linear-gradient(135deg,#38e8ff 0%, #8ef6ff 38%, #ff4ecd 100%);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 14px 40px rgba(56,232,255,.32), 0 0 70px rgba(255,78,205,.22);
+  transition: transform .26s cubic-bezier(.2,.8,.2,1), box-shadow .26s, filter .26s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn::after{
+  content:""; position:absolute; top:0; left:-120%; width:60%; height:100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.75), transparent);
+  transform: skewX(-20deg);
+  transition: left .6s cubic-bezier(.2,.8,.2,1);
+}
+.btn:hover{ transform:translateY(-3px) scale(1.028); filter:saturate(1.15);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.5) inset, 0 20px 55px rgba(56,232,255,.45), 0 0 90px rgba(255,78,205,.35); }
+.btn:hover::after{ left:130%; }
+.btn:active{ transform:translateY(0) scale(.975); }
+.btn:focus-visible{ outline:3px solid var(--yellow); outline-offset:4px; }
+
+.btn-ghost{
+  background: rgba(255,255,255,.05); color:var(--text);
+  border:1px solid var(--stroke); box-shadow:none;
+  font-family:'Orbitron',sans-serif; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  font-size:12px; padding:14px 26px; border-radius:12px; cursor:pointer;
+  transition: all .25s cubic-bezier(.2,.8,.2,1);
+}
+.btn-ghost:hover{ background:rgba(255,255,255,.1); border-color:rgba(56,232,255,.55); transform:translateY(-2px); }
+.btn-ghost:focus-visible{ outline:3px solid var(--yellow); outline-offset:3px; }
+
+/* ============================================================
+   TOP BAR (mute + progress)
+   ============================================================ */
+.topbar{
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px clamp(12px,3vw,26px);
+  pointer-events:none;
+}
+.topbar > *{ pointer-events:auto; }
+.brand{ font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:.3em; color:rgba(232,238,255,.45); }
+.mute-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.06); border:1px solid var(--stroke); color:var(--text);
+  border-radius:999px; padding:9px 16px; cursor:pointer;
+  font-family:'Outfit',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600;
+  backdrop-filter: blur(12px); transition: all .25s;
+}
+.mute-btn:hover{ background:rgba(255,255,255,.13); border-color:rgba(56,232,255,.5); }
+.mute-btn:focus-visible{ outline:3px solid var(--yellow); outline-offset:3px; }
+
+.progress-rail{
+  position:fixed; top:0; left:0; right:0; height:3px; z-index:41;
+  background:rgba(255,255,255,.06);
+}
+.progress-fill{
+  height:100%; width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--pink),var(--yellow));
+  box-shadow:0 0 18px rgba(56,232,255,.8);
+  transition: width .9s cubic-bezier(.2,.8,.2,1);
+}
+
+/* ============================================================
+   SCENE 1 — ACCESS
+   ============================================================ */
+.class-bar{
+  width:100%; overflow:hidden; white-space:nowrap;
+  border-top:1px solid rgba(255,59,92,.35);
+  border-bottom:1px solid rgba(255,59,92,.35);
+  background:rgba(255,59,92,.07);
+  padding:8px 0; margin-bottom:clamp(24px,5vw,44px);
+}
+.class-bar span{
+  display:inline-block; padding-left:100%;
+  font-family:'Orbitron',sans-serif; font-size:10.5px; letter-spacing:.34em;
+  color:rgba(255,120,140,.85); text-transform:uppercase;
+  animation: marquee 26s linear infinite;
+}
+@keyframes marquee{ to{ transform:translateX(-100%); } }
+
+.stamp{
+  display:inline-block;
+  font-family:'Orbitron',sans-serif; font-weight:900;
+  font-size:clamp(13px,2.6vw,18px); letter-spacing:.32em;
+  color:var(--red); border:4px solid var(--red);
+  padding:12px 26px; border-radius:10px;
+  transform:rotate(-6deg);
+  box-shadow:0 0 34px rgba(255,59,92,.4), inset 0 0 34px rgba(255,59,92,.14);
+  text-shadow:0 0 18px rgba(255,59,92,.8);
+  animation: stampIn .9s cubic-bezier(.2,1.5,.4,1) .15s both, stampPulse 3.4s ease-in-out 1.2s infinite;
+  cursor:pointer; user-select:none;
+}
+@keyframes stampIn{ from{ opacity:0; transform:rotate(-24deg) scale(1.7); } to{ opacity:1; transform:rotate(-6deg) scale(1); } }
+@keyframes stampPulse{ 0%,100%{ box-shadow:0 0 34px rgba(255,59,92,.35), inset 0 0 34px rgba(255,59,92,.12);} 50%{ box-shadow:0 0 60px rgba(255,59,92,.6), inset 0 0 44px rgba(255,59,92,.22);} }
+
+.glitch{ position:relative; display:inline-block; }
+.glitch::before, .glitch::after{
+  content:attr(data-text); position:absolute; inset:0; pointer-events:none;
+}
+.glitch::before{ color:var(--blue); transform:translate(2px,0); opacity:.55; animation: glitchA 3.4s infinite steps(2,end); }
+.glitch::after{ color:var(--pink); transform:translate(-2px,0); opacity:.55; animation: glitchB 2.8s infinite steps(2,end); }
+@keyframes glitchA{ 0%,92%,100%{ clip-path:inset(0 0 100% 0); } 94%{ clip-path:inset(12% 0 62% 0); } 96%{ clip-path:inset(58% 0 22% 0); } 98%{ clip-path:inset(30% 0 48% 0); } }
+@keyframes glitchB{ 0%,90%,100%{ clip-path:inset(100% 0 0 0); } 93%{ clip-path:inset(46% 0 34% 0); } 95%{ clip-path:inset(18% 0 66% 0); } 97%{ clip-path:inset(70% 0 12% 0); } }
+
+.terminal{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:clamp(11px,1.7vw,13px); color:rgba(77,255,166,.85);
+  letter-spacing:.06em; min-height:1.4em;
+}
+.caret{ display:inline-block; width:8px; background:var(--green); animation: blink 1s steps(1) infinite; }
+@keyframes blink{ 50%{ opacity:0; } }
+
+/* COUNTDOWN */
+.countdown{ display:flex; gap:clamp(8px,2vw,16px); flex-wrap:wrap; justify-content:center; }
+.cd-cell{
+  min-width:clamp(64px,17vw,94px);
+  padding:14px 10px 12px;
+  border-radius:14px; text-align:center;
+  background:linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  border:1px solid var(--stroke);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15);
+}
+.cd-num{ font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(22px,4.6vw,32px); color:var(--blue);
+  text-shadow:0 0 22px rgba(56,232,255,.6); font-variant-numeric:tabular-nums; }
+.cd-lbl{ font-size:9.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+
+.pill-today{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 26px; border-radius:999px;
+  border:1px solid rgba(255,225,77,.5); background:rgba(255,225,77,.1);
+  color:var(--yellow); font-family:'Orbitron',sans-serif; font-weight:800;
+  font-size:clamp(12px,2vw,15px); letter-spacing:.2em;
+  box-shadow:0 0 44px rgba(255,225,77,.28);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+@keyframes pulseGlow{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.035); } }
+
+/* ============================================================
+   ROBOT
+   ============================================================ */
+.robot{ position:relative; width:120px; height:150px; animation: floaty 3.6s ease-in-out infinite; }
+@keyframes floaty{ 0%,100%{ transform:translateY(0) rotate(-1deg);} 50%{ transform:translateY(-12px) rotate(1.5deg);} }
+.robot-antenna{ position:absolute; left:50%; top:-2px; width:3px; height:26px; background:linear-gradient(#8fb4ff,#4a6ea8); transform:translateX(-50%); border-radius:2px; }
+.robot-antenna span{
+  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+  width:14px; height:14px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, var(--pink));
+  box-shadow:0 0 22px var(--pink); animation: blinkDot 1.8s ease-in-out infinite;
+}
+@keyframes blinkDot{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+.robot-head{
+  position:absolute; top:24px; left:0; width:120px; height:86px; border-radius:24px;
+  background:linear-gradient(160deg, #dfe9ff, #8fa6d8 55%, #56699b);
+  box-shadow: inset 0 -8px 18px rgba(0,0,0,.3), inset 0 5px 12px rgba(255,255,255,.7), 0 14px 34px rgba(0,0,0,.5);
+  display:flex; align-items:center; justify-content:center; gap:16px;
+}
+.robot-eye{
+  width:20px; height:20px; border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, #bffcff, var(--blue) 60%, #0a6d84);
+  box-shadow:0 0 20px var(--blue);
+  animation: robotBlink 4.2s infinite;
+}
+@keyframes robotBlink{ 0%,92%,100%{ transform:scaleY(1);} 95%{ transform:scaleY(.08);} 98%{ transform:scaleY(1);} }
+.robot-mouth{
+  position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+  width:34px; height:8px; border-radius:0 0 14px 14px;
+  background:#2b3556; box-shadow: inset 0 2px 0 rgba(255,255,255,.18);
+}
+.robot-body{
+  position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+  width:76px; height:44px; border-radius:16px;
+  background:linear-gradient(160deg,#c8d6f5,#6b7dad 60%,#3d4a75);
+  box-shadow: inset 0 -6px 14px rgba(0,0,0,.35), inset 0 4px 10px rgba(255,255,255,.6), 0 10px 26px rgba(0,0,0,.45);
+  display:flex; align-items:center; justify-content:center;
+}
+.robot-core{
+  width:22px; height:22px; border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, #fff9c4, var(--yellow) 55%, #b08a00);
+  box-shadow:0 0 26px var(--yellow); animation: blinkDot 2.4s ease-in-out infinite;
+}
+.robot-column{ display:grid; justify-items:center; gap:9px; flex:0 0 150px; }
+.robot-control{ padding:0; border:0; border-radius:20px; background:transparent; cursor:pointer; }
+.robot-control:focus-visible{ outline:3px solid var(--yellow); outline-offset:6px; }
+.robot-bubble{
+  max-width:190px; margin:0; padding:10px 12px; border:1px solid rgba(56,232,255,.32);
+  border-radius:14px; background:rgba(56,232,255,.07); color:var(--text);
+  font-size:12px; line-height:1.45; text-align:center;
+  animation: reactionIn .35s cubic-bezier(.2,1.3,.4,1) both;
+}
+
+/* ============================================================
+   BRIEFING
+   ============================================================ */
+.report-row{
+  display:grid; grid-template-columns: minmax(110px, 170px) 1fr;
+  gap:12px; padding:13px 0;
+  border-bottom:1px dashed rgba(255,255,255,.1);
+  align-items:baseline;
+}
+.report-row:last-child{ border-bottom:0; }
+.report-key{ font-family:'Orbitron',sans-serif; font-size:10.5px; letter-spacing:.24em; color:var(--muted); text-transform:uppercase; }
+.report-val{ font-size:clamp(14px,2vw,17px); font-weight:600; letter-spacing:.02em; }
+@media (max-width:520px){
+  .report-row{ grid-template-columns:1fr; gap:4px; }
+}
+.objectives{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.objectives li{ display:flex; gap:12px; align-items:flex-start; font-size:clamp(14px,2vw,16.5px); line-height:1.5; }
+.objectives li .dot{
+  flex:0 0 22px; height:22px; border-radius:6px; display:grid; place-items:center;
+  font-size:11px; font-weight:800; color:#04070f;
+  background:linear-gradient(135deg,var(--blue),var(--pink));
+  box-shadow:0 0 16px rgba(56,232,255,.45); margin-top:1px;
+}
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+.quiz-progress{ height:8px; border-radius:99px; background:rgba(255,255,255,.08); overflow:hidden; }
+.quiz-progress i{
+  display:block; height:100%; border-radius:99px;
+  background:linear-gradient(90deg,var(--blue),var(--pink));
+  box-shadow:0 0 20px rgba(56,232,255,.7);
+  transition: width .5s cubic-bezier(.2,.8,.2,1);
+}
+.opt{
+  width:100%; text-align:left; cursor:pointer;
+  display:flex; align-items:center; gap:16px;
+  padding:16px 20px; border-radius:14px;
+  background:rgba(255,255,255,.045); border:1px solid var(--stroke); color:var(--text);
+  font-family:'Outfit',sans-serif; font-size:clamp(14px,2vw,16.5px); font-weight:500;
+  transition: all .25s cubic-bezier(.2,.8,.2,1);
+}
+.opt:hover:not(:disabled){ background:rgba(56,232,255,.1); border-color:rgba(56,232,255,.55); transform:translateX(6px); }
+.opt:disabled{ cursor:default; }
+.opt:focus-visible{ outline:3px solid var(--yellow); outline-offset:3px; }
+.opt .key{
+  flex:0 0 30px; height:30px; border-radius:9px; display:grid; place-items:center;
+  font-family:'Orbitron',sans-serif; font-size:12px; font-weight:800;
+  background:rgba(255,255,255,.08); border:1px solid var(--stroke); color:var(--blue);
+}
+.opt.chosen{ background:rgba(77,255,166,.13); border-color:rgba(77,255,166,.6); box-shadow:0 0 34px rgba(77,255,166,.22); }
+.opt.chosen .key{ background:rgba(77,255,166,.25); color:var(--green); border-color:rgba(77,255,166,.5); }
+.opt.dim{ opacity:.36; }
+
+.reaction{
+  margin-top:18px; padding:16px 20px; border-radius:14px;
+  border-left:3px solid var(--yellow);
+  background:rgba(255,225,77,.09);
+  font-size:clamp(14px,2vw,16.5px); line-height:1.55;
+  animation: reactionIn .45s cubic-bezier(.2,1.3,.4,1) both;
+}
+@keyframes reactionIn{ from{ opacity:0; transform:translateY(10px) scale(.97);} to{ opacity:1; transform:none;} }
+
+.score-big{
+  font-family:'Orbitron',sans-serif; font-weight:900;
+  font-size:clamp(52px,13vw,104px); line-height:1;
+  background:linear-gradient(135deg,var(--blue),var(--pink),var(--yellow));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter: drop-shadow(0 0 34px rgba(255,78,205,.45));
+}
+
+/* ============================================================
+   PUZZLE
+   ============================================================ */
+.grid-puzzle{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:clamp(7px,1.6vw,13px);
+}
+@media (max-width:620px){ .grid-puzzle{ grid-template-columns:repeat(4,1fr); } }
+
+.cell{
+  position:relative; aspect-ratio:1/1; border-radius:14px; cursor:pointer;
+  border:1px solid var(--stroke);
+  background:linear-gradient(160deg, rgba(255,255,255,.075), rgba(255,255,255,.018));
+  display:grid; place-items:center;
+  font-size:clamp(19px,4vw,28px);
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), background .25s, border-color .25s, box-shadow .25s;
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+.cell::before{
+  content:""; position:absolute; inset:0; opacity:.5;
+  background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.16), transparent 60%);
+}
+.cell:hover:not(:disabled){ transform:translateY(-4px) scale(1.04); border-color:rgba(56,232,255,.6); box-shadow:0 0 30px rgba(56,232,255,.3); }
+.cell:focus-visible{ outline:3px solid var(--yellow); outline-offset:2px; }
+.cell.hint{ animation: hintPulse 1s ease-in-out infinite; border-color:var(--yellow); }
+@keyframes hintPulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(255,225,77,.6);} 50%{ box-shadow:0 0 34px 6px rgba(255,225,77,.55);} }
+.cell.empty{ opacity:.28; cursor:default; background:rgba(255,255,255,.02); }
+.cell.found{
+  background:linear-gradient(160deg, rgba(77,255,166,.25), rgba(56,232,255,.12));
+  border-color:rgba(77,255,166,.75);
+  box-shadow:0 0 38px rgba(77,255,166,.45);
+  animation: foundPop .55s cubic-bezier(.2,1.6,.4,1);
+}
+@keyframes foundPop{ 0%{ transform:scale(.7) rotate(-14deg);} 60%{ transform:scale(1.16) rotate(6deg);} 100%{ transform:scale(1) rotate(0);} }
+.cell.shake{ animation: shakeCell .4s ease-in-out; }
+@keyframes shakeCell{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-7px);} 75%{transform:translateX(7px);} }
+.cell .seeker{ font-size:1.15em; filter: drop-shadow(0 0 12px rgba(255,225,77,.9)); }
+
+.found-chips{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+.scan-status{ text-align:center; font-variant-numeric:tabular-nums; }
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 16px; border-radius:999px; font-size:13px; font-weight:600;
+  border:1px solid var(--stroke); background:rgba(255,255,255,.04); color:var(--muted);
+  transition: all .35s;
+}
+.chip.on{ border-color:rgba(77,255,166,.65); background:rgba(77,255,166,.14); color:var(--green); box-shadow:0 0 24px rgba(77,255,166,.28); }
+
+/* ============================================================
+   GIFT (3D CSS)
+   ============================================================ */
+.gift-stage{ perspective:1100px; width:min(420px,92vw); height:min(420px,92vw);
+  display:grid; place-items:center; position:relative; }
+.gift-3d{
+  position:relative; width:190px; height:150px;
+  transform-style:preserve-3d;
+  transform: rotateX(-14deg) rotateY(-26deg);
+  animation: giftIdle 7s ease-in-out infinite;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .7s;
+}
+@keyframes giftIdle{
+  0%,100%{ transform: rotateX(-14deg) rotateY(-26deg) translateY(0); }
+  50%    { transform: rotateX(-12deg) rotateY(-10deg) translateY(-14px); }
+}
+.gift-3d:hover{ animation-play-state:paused; transform: rotateX(-12deg) rotateY(4deg) scale(1.05); }
+.face{
+  position:absolute; inset:0; border-radius:8px;
+  background:
+    linear-gradient(150deg, #ff6ad5 0%, #d92fa8 45%, #8e1a72 100%);
+  box-shadow: inset 0 0 42px rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.16);
+}
+.face::after{
+  content:""; position:absolute; left:50%; top:0; bottom:0; width:26px; transform:translateX(-50%);
+  background:linear-gradient(180deg,#ffe14d,#e0b400);
+  box-shadow:0 0 22px rgba(255,225,77,.6);
+}
+.f-front{ transform: translateZ(95px); }
+.f-back { transform: rotateY(180deg) translateZ(95px); }
+.f-right{ transform: rotateY(90deg)  translateZ(95px); }
+.f-left { transform: rotateY(-90deg) translateZ(95px); }
+.f-bottom{ transform: rotateX(-90deg) translateZ(75px); height:190px; top:-20px; }
+
+.lid{
+  position:absolute; left:50%; top:-46px; transform:translateX(-50%);
+  width:214px; height:52px; border-radius:10px; z-index:5;
+  background:linear-gradient(150deg,#ff8ae0,#e043b6 50%,#94188a);
+  box-shadow:0 18px 46px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.45);
+  transition: transform 1.05s cubic-bezier(.34,1.4,.5,1), opacity .8s .35s;
+  transform-origin:center;
+}
+.lid::after{
+  content:""; position:absolute; left:50%; top:0; bottom:0; width:26px; transform:translateX(-50%);
+  background:linear-gradient(180deg,#ffe14d,#e0b400); box-shadow:0 0 22px rgba(255,225,77,.6);
+}
+.lid .bow{
+  position:absolute; top:-24px; left:50%; transform:translateX(-50%);
+  width:74px; height:34px;
+}
+.lid .bow::before, .lid .bow::after{
+  content:""; position:absolute; top:0; width:34px; height:34px; border-radius:50% 50% 50% 0;
+  background:linear-gradient(140deg,#fff6a8,#ffd93d 60%,#d1a400);
+  box-shadow:0 0 26px rgba(255,225,77,.7);
+}
+.lid .bow::before{ left:0; transform:rotate(-18deg); }
+.lid .bow::after{ right:0; transform:rotate(18deg) scaleX(-1); }
+
+.gift-stage.opened .lid{
+  transform: translateX(-50%) translateY(-330px) rotate(-28deg) scale(.85);
+  opacity:0;
+}
+.gift-stage.opened .gift-3d{ opacity:0; transform: rotateX(-14deg) rotateY(-26deg) scale(.6); }
+
+.gift-hint{ animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-7px);} }
+
+/* CAKE */
+.cake{
+  position:relative; width:min(220px,60vw); margin:0 auto;
+  animation: cakeRise 1s cubic-bezier(.2,1.3,.4,1) both;
+}
+@keyframes cakeRise{ from{ opacity:0; transform:translateY(60px) scale(.7);} to{ opacity:1; transform:none;} }
+.cake-plate{
+  height:14px; border-radius:50%;
+  background:linear-gradient(180deg,#c9d8ff,#7a8cbd);
+  box-shadow:0 14px 40px rgba(56,232,255,.35);
+}
+.cake-tier{
+  height:56px; border-radius:10px 10px 6px 6px;
+  background:linear-gradient(180deg,#ffd9ef 0%,#ff8ecb 40%,#e04ba0 100%);
+  box-shadow: inset 0 -10px 20px rgba(0,0,0,.18), inset 0 8px 16px rgba(255,255,255,.5);
+  position:relative;
+}
+.cake-tier.mid{ width:86%; margin:0 auto; height:44px; background:linear-gradient(180deg,#fff0c4,#ffd93d 50%,#d9a300); }
+.cake-tier.top{ width:70%; margin:0 auto; height:38px; background:linear-gradient(180deg,#d7f7ff,#7fe4ff 50%,#2fb6d8); }
+.cake-drip{
+  position:absolute; top:-6px; left:0; right:0; height:16px;
+  background:radial-gradient(circle at 12px 0, #fff 11px, transparent 12px) repeat-x;
+  background-size:24px 16px; opacity:.9;
+}
+.candle{
+  position:absolute; top:-34px; left:50%; transform:translateX(-50%);
+  width:8px; height:34px; border-radius:4px;
+  background:linear-gradient(180deg,#fff,#ff9ecf 60%,#e04ba0);
+  box-shadow:0 0 12px rgba(255,255,255,.5);
+}
+.flame{
+  position:absolute; top:-19px; left:50%; transform:translateX(-50%);
+  width:13px; height:20px; border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;
+  background:radial-gradient(circle at 50% 72%, #fff 8%, #ffe14d 42%, #ff8a00 76%, transparent 78%);
+  filter: drop-shadow(0 0 16px rgba(255,180,0,.95));
+  animation: flicker .32s ease-in-out infinite alternate;
+}
+@keyframes flicker{ from{ transform:translateX(-50%) scale(1) rotate(-4deg);} to{ transform:translateX(-50%) scale(1.16,1.05) rotate(4deg);} }
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.letter{
+  display:inline-block;
+  animation: letterPop .72s cubic-bezier(.2,1.6,.4,1) both;
+}
+@keyframes letterPop{
+  0%{ opacity:0; transform:translateY(40px) rotate(-14deg) scale(.5); filter:blur(8px); }
+  100%{ opacity:1; transform:none; filter:blur(0); }
+}
+.title-hb{
+  font-family:'Orbitron',sans-serif; font-weight:900;
+  font-size:clamp(28px,7.4vw,74px); line-height:1.06; letter-spacing:.02em; text-align:center;
+  background:linear-gradient(120deg,#38e8ff 0%,#ff4ecd 42%,#ffe14d 78%,#38e8ff 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation: gradientSlide 6s linear infinite;
+  filter: drop-shadow(0 0 34px rgba(255,78,205,.4));
+}
+@keyframes gradientSlide{ to{ background-position:220% 0; } }
+.scene-reveal .wrap-sm{ width:min(760px,100%); }
+.title-hb.warm-title{
+  color:#f8e6d3; -webkit-text-fill-color:#f8e6d3;
+  background:none; -webkit-background-clip:border-box; background-clip:border-box;
+  font-family:'Cormorant Garamond',Georgia,serif; font-weight:600;
+  font-size:clamp(48px,9vw,92px); letter-spacing:-.035em; line-height:1;
+  filter:drop-shadow(0 0 34px rgba(242,194,163,.25));
+  animation: warmReveal 1.7s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes warmReveal{
+  from{ opacity:0; transform:translateY(24px); filter:blur(8px) drop-shadow(0 0 0 rgba(242,194,163,0)); }
+  to{ opacity:1; transform:none; filter:blur(0) drop-shadow(0 0 34px rgba(242,194,163,.25)); }
+}
+.birthday-message{
+  max-width:64ch; margin:0; padding:clamp(22px,5vw,38px);
+  border:1px solid rgba(244,207,181,.18); border-radius:24px;
+  background:linear-gradient(145deg,rgba(255,235,215,.075),rgba(255,235,215,.025));
+  box-shadow:0 24px 70px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.09);
+  color:rgba(255,242,230,.93); font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(22px,3.8vw,30px); font-weight:500; line-height:1.55;
+  animation: warmReveal 1.8s .12s cubic-bezier(.2,.8,.2,1) both;
+}
+.birthday-signature{
+  margin:0; color:#f1cbbd; font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(20px,3.3vw,26px); font-style:italic; letter-spacing:.015em;
+  animation: warmReveal 1.6s cubic-bezier(.2,.8,.2,1) both;
+}
+.reveal-actions{ display:grid; justify-items:center; gap:16px; margin-top:10px; }
+.reveal-status{ color:rgba(240,219,206,.48); font-size:10px; letter-spacing:.22em; }
+.certificate-link{
+  border-color:rgba(244,207,181,.28); color:#f6e2d5;
+}
+.certificate-link:hover{ border-color:rgba(244,207,181,.62); background:rgba(244,207,181,.08); }
+.scene-reveal .balloon{ filter:saturate(.64) brightness(.92); }
+.scene-reveal .balloon.gentle{ filter:saturate(.42) brightness(.8) opacity(.26); transition:filter 2.2s ease; }
+
+.balloon{
+  position:fixed; bottom:-160px; width:52px; height:64px; border-radius:50% 50% 48% 48%;
+  z-index:1; pointer-events:none;
+  animation: balloonUp linear forwards;
+  box-shadow: inset -8px -10px 20px rgba(0,0,0,.22), inset 8px 8px 20px rgba(255,255,255,.4);
+}
+.balloon::after{
+  content:""; position:absolute; left:50%; top:100%; width:1.5px; height:44px;
+  background:rgba(255,255,255,.4); transform:translateX(-50%);
+}
+@keyframes balloonUp{
+  0%{ transform:translateY(0) translateX(0) rotate(-6deg); opacity:0; }
+  8%{ opacity:.95; }
+  100%{ transform:translateY(-130vh) translateX(var(--drift,30px)) rotate(6deg); opacity:0; }
+}
+
+.final-line{
+  animation: reactionIn .8s cubic-bezier(.2,1.2,.4,1) both;
+}
+
+/* ============================================================
+   CERTIFICATE
+   ============================================================ */
+.cert-frame{
+  border-radius:16px; overflow:hidden;
+  border:1px solid var(--stroke);
+  box-shadow:0 30px 90px rgba(0,0,0,.6), 0 0 70px rgba(56,232,255,.14);
+  background:#0a0a20;
+}
+.cert-frame canvas{ display:block; width:100%; height:auto; }
+
+/* ============================================================
+   MISC
+   ============================================================ */
+.toast{
+  position:fixed; left:50%; bottom:26px; transform:translateX(-50%);
+  z-index:70; padding:14px 24px; border-radius:14px;
+  background:rgba(20,16,48,.94); border:1px solid rgba(255,78,205,.45);
+  color:var(--text); font-size:14px; font-weight:500;
+  box-shadow:0 18px 50px rgba(0,0,0,.6), 0 0 40px rgba(255,78,205,.22);
+  animation: toastIn .35s cubic-bezier(.2,1.3,.4,1) both;
+  max-width:min(90vw,440px); text-align:center;
+}
+@keyframes toastIn{ from{ opacity:0; transform:translate(-50%,20px) scale(.94);} to{ opacity:1; transform:translate(-50%,0) scale(1);} }
+
+.eyebrow{ font-family:'Orbitron',sans-serif; font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--blue); }
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js" crossorigin></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+/* ============================================================
+   ================  CONFIGURATION — EDIT ME  =================
+   ============================================================ */
+const CONFIG = {
+  herName: "Emy",
+  senderName: "Your Friend",
+
+  // Birthday target. Year is used for the countdown.
+  birthday: { month: 1, day: 31, year: 2027 },
+
+  // Set to true to preview the "IT'S TODAY" celebration state.
+  forceCelebration: false,
+
+  music: { volume: 0.14, warmVolume: 0.075, stepDur: 0.235 },
+
+  quiz: [
+    {
+      q: "How many cakes are acceptable on your birthday?",
+      options: [
+        { text: "One is enough.",        points: 1, reaction: "Wrong. But we respect the modesty. 🎂" },
+        { text: "Three minimum.",        points: 2, reaction: "Correct. Three is the legal minimum. ⚖️" },
+        { text: "There is no limit.",    points: 3, reaction: "PERFECT ANSWER. The Cake Council approves. 🍰" }
+      ]
+    },
+    {
+      q: "What is the best birthday activity?",
+      options: [
+        { text: "Sleeping.",                    points: 1, reaction: "Valid. Sleep is a lifestyle, not a hobby. 😴" },
+        { text: "Eating.",                      points: 2, reaction: "Strong choice. Chewing counts as cardio. 🍽️" },
+        { text: "Doing absolutely nothing.",    points: 3, reaction: "Elite answer. Certified professional. 🛋️" }
+      ]
+    },
+    {
+      q: "What happens when someone says you're getting older?",
+      options: [
+        { text: "Ignore them.",              points: 1, reaction: "Classic. Denial is a beautiful thing. 🙈" },
+        { text: "Pretend you didn't hear.",  points: 2, reaction: "Strategic deafness. Respect. 👂" },
+        { text: "Request a refund.",         points: 3, reaction: "Refund request submitted. Awaiting reply from the universe. 📄" }
+      ]
+    },
+    {
+      q: "Are you ready for another year?",
+      options: [
+        { text: "Absolutely!",          points: 3, reaction: "Confidence level: dangerous. 💪" },
+        { text: "I need more time.",    points: 2, reaction: "Request denied. Time is non-refundable. ⏳" },
+        { text: "Can I skip this level?", points: 3, reaction: "There is no skip button. We checked twice. 🎮" }
+      ]
+    }
+  ],
+
+  ranks: [
+    { min: 0,  label: "SUSPICIOUSLY HUMBLE AGENT",  sub: "You answered like someone who doesn't want cake. We're watching you." },
+    { min: 7,  label: "CERTIFIED CAKE ENTHUSIAST",  sub: "Solid performance. The frosting division is impressed." },
+    { min: 9,  label: "SENIOR BIRTHDAY OFFICER",    sub: "Excellent instincts. You clearly know how to run a birthday." },
+    { min: 11, label: "BIRTHDAY LEGEND",            sub: "Maximum score. Frankly, we're a little intimidated." }
+  ],
+
+  messages: {
+    accessLine1: "Something suspicious is happening...",
+    accessLine2: "Your birthday mission is waiting for you.",
+    briefingObjective: [
+      "Have fun (mandatory).",
+      "Eat cake (non-negotiable).",
+      "Receive presents (graciously, but quickly).",
+      "Avoid unnecessary responsibilities (critical)."
+    ],
+    robotIntel: [
+      "Intel: Cake is a food group. Confirmed by absolutely no one.",
+      "My battery is at 2%, but I still have enough power to judge your snack choices.",
+      "Strategic advice: avoid meetings. Pursue frosting.",
+      "The Bureau of Responsible Fun has no jurisdiction here."
+    ],
+    birthdayMessage: "I hope this new year of your life is filled with happiness, success, and beautiful laughter. I hope you achieve everything you've been wishing for, and that the days ahead bring you even more joy.",
+    birthdaySignature: "A little birthday surprise from your friend. ❤️"
+  }
+};
+
+/* ============================================================
+   ================  SMALL UTILITIES  =========================
+   ============================================================ */
+function shuffle(a){
+  const r = a.slice();
+  for (let i = r.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
+  }
+  return r;
+}
+const pad2 = n => String(n).padStart(2, "0");
+const birthdayLabel = new Intl.DateTimeFormat("en", {
+  month: "long",
+  day: "numeric"
+}).format(new Date(CONFIG.birthday.year, CONFIG.birthday.month - 1, CONFIG.birthday.day)).toUpperCase();
+
+/* ============================================================
+   ================  AUDIO ENGINE (WebAudio)  =================
+   ============================================================ */
+const Audio = (function(){
+  let ctx = null, master = null, musicBus = null;
+  let muted = false, musicOn = false, musicMood = "playful";
+  let schedulerId = null, nextTime = 0, step = 0;
+
+  const MELODY = [0, 7, 3, 10, 12, 7, 15, 10, 0, 7, 3, 10, 12, 15, 10, 7];
+  const WARM_MELODY = [0, 4, 7, 9, 7, 4, 2, 4, 0, 4, 7, 11, 9, 7, 4, 2];
+  const BASS   = [0, -5, -3, -7];
+
+  function init(){
+    if (ctx){
+      if (ctx.state === "suspended") ctx.resume();
+      return ctx;
+    }
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    ctx = new AC();
+    master = ctx.createGain();
+    master.gain.value = 0.85;
+    master.connect(ctx.destination);
+
+    musicBus = ctx.createGain();
+    musicBus.gain.value = 0;
+    musicBus.connect(master);
+    return ctx;
+  }
+
+  function tone(freq, dur, type, gain, when, dest){
+    if (!ctx) return;
+    const t = when != null ? when : ctx.currentTime;
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = type || "sine";
+    o.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(Math.max(gain, 0.0002), t + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g);
+    g.connect(dest || master);
+    o.start(t);
+    o.stop(t + dur + 0.06);
+  }
+
+  function noise(dur, gain, when){
+    if (!ctx) return;
+    const t = when != null ? when : ctx.currentTime;
+    const len = Math.floor(ctx.sampleRate * dur);
+    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < len; i++){
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.2);
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const g = ctx.createGain();
+    g.gain.value = gain;
+    const f = ctx.createBiquadFilter();
+    f.type = "bandpass";
+    f.frequency.value = 1800;
+    src.connect(f); f.connect(g); g.connect(master);
+    src.start(t);
+  }
+
+  /* ---------- background music loop ---------- */
+  function scheduleStep(s, t){
+    const bar = Math.floor(s / 8) % 4;
+    if (musicMood === "warm"){
+      if (s % 8 === 0){
+        tone(110 * Math.pow(2, BASS[bar] / 12), 1.4, "sine", 0.08, t, musicBus);
+      }
+      if (s % 2 === 0){
+        const note = WARM_MELODY[(s / 2) % WARM_MELODY.length];
+        tone(330 * Math.pow(2, note / 12), 0.78, "sine", 0.045, t, musicBus);
+      }
+      if (s % 8 === 4){
+        const note = WARM_MELODY[(s / 2 + 3) % WARM_MELODY.length];
+        tone(660 * Math.pow(2, note / 12), 0.9, "sine", 0.018, t, musicBus);
+      }
+      return;
+    }
+    if (s % 8 === 0){
+      tone(55 * Math.pow(2, BASS[bar] / 12), 0.62, "triangle", 0.30, t, musicBus);
+    }
+    if (s % 2 === 0){
+      const note = MELODY[(s / 2) % MELODY.length];
+      tone(220 * Math.pow(2, note / 12), 0.32, "sine", 0.11, t, musicBus);
+    }
+    if (s % 8 === 4){
+      tone(330 * Math.pow(2, MELODY[(s / 2) % MELODY.length] / 12), 0.22, "triangle", 0.055, t, musicBus);
+    }
+  }
+
+  function startMusic(mood){
+    if (mood && mood !== musicMood){
+      musicMood = mood;
+      if (ctx && musicBus && musicOn){
+        musicBus.gain.cancelScheduledValues(ctx.currentTime);
+        musicBus.gain.setValueAtTime(musicBus.gain.value, ctx.currentTime);
+        musicBus.gain.linearRampToValueAtTime(
+          musicMood === "warm" ? CONFIG.music.warmVolume : CONFIG.music.volume,
+          ctx.currentTime + 2.4
+        );
+      }
+    }
+    init();
+    if (!ctx || musicOn) return;
+    musicOn = true;
+    nextTime = ctx.currentTime + 0.08;
+    step = 0;
+    musicBus.gain.cancelScheduledValues(ctx.currentTime);
+    musicBus.gain.setValueAtTime(musicBus.gain.value, ctx.currentTime);
+    musicBus.gain.linearRampToValueAtTime(
+      musicMood === "warm" ? CONFIG.music.warmVolume : CONFIG.music.volume,
+      ctx.currentTime + 1.6
+    );
+
+    schedulerId = setInterval(() => {
+      if (!ctx) return;
+      while (nextTime < ctx.currentTime + 0.25){
+        scheduleStep(step, nextTime);
+        nextTime += CONFIG.music.stepDur;
+        step = (step + 1) % 32;
+      }
+    }, 60);
+  }
+
+  function stopMusic(){
+    if (schedulerId) clearInterval(schedulerId);
+    schedulerId = null;
+    musicOn = false;
+    if (ctx && musicBus){
+      musicBus.gain.cancelScheduledValues(ctx.currentTime);
+      musicBus.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.4);
+    }
+  }
+
+  function setMuted(m){
+    muted = m;
+    init();
+    if (!ctx) return;
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.linearRampToValueAtTime(m ? 0 : 0.85, ctx.currentTime + 0.22);
+  }
+
+  /* ---------- sound effects ---------- */
+  const sfx = {
+    click(){ init(); tone(680, 0.07, "square", 0.10); },
+    hover(){ init(); tone(1180, 0.04, "sine", 0.035); },
+    whoosh(){
+      init(); noise(0.5, 0.10);
+      tone(220, 0.42, "sawtooth", 0.05);
+      tone(660, 0.42, "sine", 0.05);
+    },
+    pick(){
+      if (!init()) return;
+      tone(523, 0.10, "triangle", 0.14);
+      tone(784, 0.16, "triangle", 0.12, ctx.currentTime + 0.08);
+    },
+    good(){
+      if (!init()) return;
+      const t = ctx.currentTime;
+      [523, 659, 784].forEach((f, i) => tone(f, 0.22, "triangle", 0.13, t + i * 0.075));
+    },
+    bad(){
+      if (!init()) return;
+      const t = ctx.currentTime;
+      tone(200, 0.16, "sawtooth", 0.11, t);
+      tone(150, 0.26, "sawtooth", 0.09, t + 0.10);
+    },
+    found(){
+      if (!init()) return;
+      const t = ctx.currentTime;
+      [660, 880, 1320].forEach((f, i) => tone(f, 0.26, "sine", 0.13, t + i * 0.07));
+    },
+    unlock(){
+      if (!init()) return;
+      const t = ctx.currentTime;
+      [392, 523, 659, 784, 1046].forEach((f, i) => tone(f, 0.42, "triangle", 0.11, t + i * 0.09));
+      noise(1.0, 0.09, t);
+    },
+    fanfare(){
+      if (!init()) return;
+      const t = ctx.currentTime;
+      const seq = [
+        [523, 0.00], [659, 0.13], [784, 0.26], [1046, 0.39],
+        [784, 0.62], [1046, 0.75], [1318, 0.92]
+      ];
+      seq.forEach(([f, d]) => {
+        tone(f, 0.42, "triangle", 0.12, t + d);
+        tone(f / 2, 0.42, "sine", 0.07, t + d);
+      });
+      noise(1.4, 0.07, t);
+    }
+  };
+
+  return { init, startMusic, stopMusic, setMuted, sfx, get muted(){ return muted; } };
+})();
+
+/* ============================================================
+   ================  PARTICLE FX (2D canvas)  =================
+   ============================================================ */
+const FX = (function(){
+  let canvas = null, ctx = null, parts = [], raf = null, running = false;
+
+  function prefersReducedMotion(){
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function init(){
+    if (canvas) return;
+    canvas = document.getElementById("fx");
+    if (!canvas) return;
+    ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    resize();
+    window.addEventListener("resize", resize);
+  }
+  function resize(){
+    if (!canvas) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  const COLORS = ["#38e8ff", "#ff4ecd", "#ffe14d", "#4dffa6", "#a78bfa", "#ffffff"];
+
+  function spawnConfetti(count){
+    if (prefersReducedMotion()) return;
+    init();
+    if (!ctx) return;
+    const W = window.innerWidth, H = window.innerHeight;
+    for (let i = 0; i < count; i++){
+      parts.push({
+        x: W / 2 + (Math.random() - 0.5) * W * 0.6,
+        y: H * 0.45 + (Math.random() - 0.5) * 120,
+        vx: (Math.random() - 0.5) * 15,
+        vy: -Math.random() * 16 - 4,
+        g: 0.30 + Math.random() * 0.16,
+        w: 6 + Math.random() * 8,
+        h: 9 + Math.random() * 12,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.36,
+        color: COLORS[(Math.random() * COLORS.length) | 0],
+        life: 1, decay: 0.0045 + Math.random() * 0.005,
+        shape: Math.random() > 0.35 ? "rect" : "circle"
+      });
+    }
+    start();
+  }
+
+  function spawnFirework(x, y, count){
+    if (prefersReducedMotion()) return;
+    init();
+    if (!ctx) return;
+    const n = count || 64;
+    const hue = COLORS[(Math.random() * COLORS.length) | 0];
+    const hue2 = COLORS[(Math.random() * COLORS.length) | 0];
+    for (let i = 0; i < n; i++){
+      const a = (Math.PI * 2 * i) / n + Math.random() * 0.12;
+      const sp = 2.6 + Math.random() * 5.4;
+      parts.push({
+        x, y,
+        vx: Math.cos(a) * sp,
+        vy: Math.sin(a) * sp,
+        g: 0.055,
+        w: 3, h: 3,
+        rot: 0, vr: 0,
+        color: Math.random() > 0.5 ? hue : hue2,
+        life: 1, decay: 0.014 + Math.random() * 0.012,
+        shape: "circle",
+        trail: true
+      });
+    }
+    start();
+  }
+
+  function start(){
+    if (running) return;
+    running = true;
+    loop();
+  }
+
+  function loop(){
+    if (!ctx || !canvas) return;
+    const W = window.innerWidth, H = window.innerHeight;
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = parts.length - 1; i >= 0; i--){
+      const p = parts[i];
+      p.vy += p.g;
+      p.vx *= 0.992;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.life -= p.decay;
+
+      if (p.life <= 0 || p.y > H + 80 || p.x < -120 || p.x > W + 120){
+        parts.splice(i, 1);
+        continue;
+      }
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
+      ctx.fillStyle = p.color;
+
+      if (p.shape === "rect"){
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.w / 2, 0, Math.PI * 2);
+        ctx.fill();
+        if (p.trail){
+          ctx.globalAlpha *= 0.3;
+          ctx.beginPath();
+          ctx.arc(p.x - p.vx * 1.6, p.y - p.vy * 1.6, p.w / 2.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+
+    if (parts.length === 0){
+      running = false;
+      ctx.clearRect(0, 0, W, H);
+      return;
+    }
+    raf = requestAnimationFrame(loop);
+  }
+
+  return { init, spawnConfetti, spawnFirework };
+})();
+
+/* ============================================================
+   ================  STARFIELD BACKGROUND  ====================
+   ============================================================ */
+function Starfield(){
+  const ref = useRef(null);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let raf = null, stars = [], w = 0, h = 0;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function resize(){
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = Math.min(190, Math.floor((w * h) / 9000));
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.5 + 0.3,
+        a: Math.random(),
+        s: 0.0015 + Math.random() * 0.006,
+        vy: 0.02 + Math.random() * 0.10,
+        hue: Math.random() > 0.7
+          ? (Math.random() > 0.5 ? "56,232,255" : "255,78,205")
+          : "255,255,255"
+      }));
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, w, h);
+      for (const st of stars){
+        st.a += st.s;
+        if (st.a > 1){ st.a = 1; st.s *= -1; }
+        if (st.a < 0.06){ st.a = 0.06; st.s *= -1; }
+        st.y -= st.vy;
+        if (st.y < -4){ st.y = h + 4; st.x = Math.random() * w; }
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(" + st.hue + "," + st.a.toFixed(3) + ")";
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    if (!reduced) draw();
+    else {
+      ctx.clearRect(0, 0, w, h);
+      for (const st of stars){
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(" + st.hue + ",0.6)";
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    return () => {
+      window.removeEventListener("resize", resize);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+  return <canvas id="stars" ref={ref} aria-hidden="true" />;
+}
+
+/* ============================================================
+   ================  HOOKS  ===================================
+   ============================================================ */
+function useTypewriter(text, speed, enabled){
+  const [out, setOut] = useState("");
+  useEffect(() => {
+    if (!enabled){ setOut(""); return; }
+    setOut("");
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setOut(text.slice(0, i));
+      if (i >= text.length) clearInterval(id);
+    }, speed);
+    return () => clearInterval(id);
+  }, [text, speed, enabled]);
+  return out;
+}
+
+function useCountdown(){
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return useMemo(() => {
+    const { month, day, year } = CONFIG.birthday;
+    const target = new Date(year, month - 1, day, 0, 0, 0, 0);
+    const endOfDay = new Date(year, month - 1, day, 23, 59, 59, 999);
+    const cur = new Date(now);
+
+    let status;
+    if (CONFIG.forceCelebration) status = "today";
+    else if (cur >= target && cur <= endOfDay) status = "today";
+    else if (cur < target) status = "before";
+    else status = "after";
+
+    const diff = Math.max(0, target.getTime() - now);
+    return {
+      status,
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor(diff / 3600000) % 24,
+      minutes: Math.floor(diff / 60000) % 60,
+      seconds: Math.floor(diff / 1000) % 60
+    };
+  }, [now]);
+}
+
+/* ============================================================
+   ================  SHARED UI  ===============================
+   ============================================================ */
+function Toast({ text }){
+  if (!text) return null;
+  return <div className="toast" role="status" aria-live="polite">{text}</div>;
+}
+
+function Robot(){
+  return (
+    <div className="robot" aria-hidden="true">
+      <div className="robot-antenna"><span /></div>
+      <div className="robot-head">
+        <div className="robot-eye" />
+        <div className="robot-eye" />
+        <div className="robot-mouth" />
+      </div>
+      <div className="robot-body"><div className="robot-core" /></div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 1 — SECRET ACCESS  =================
+   ============================================================ */
+function AccessScene({ onStart, onEgg }){
+  const cd = useCountdown();
+  const [eggClicks, setEggClicks] = useState(0);
+  const typed = useTypewriter("> establishing secure connection ... identity unverified ...", 26, true);
+
+  const handleStamp = () => {
+    Audio.sfx.click();
+    const n = eggClicks + 1;
+    setEggClicks(n);
+    if (n === 5){
+      onEgg("🥚 Easter egg found: the stamp is not a button. You pressed it 5 times anyway. Respect.");
+      setEggClicks(0);
+    }
+  };
+
+  return (
+    <div className="scene">
+      <div className="wrap-sm" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "clamp(18px,4vw,30px)" }}>
+
+        <div className="class-bar" aria-hidden="true">
+          <span>TOP SECRET &nbsp;•&nbsp; LEVEL 5 CLEARANCE &nbsp;•&nbsp; EYES ONLY &nbsp;•&nbsp; UNAUTHORIZED ACCESS WILL BE JUDGED SEVERELY &nbsp;•&nbsp; TOP SECRET &nbsp;•&nbsp; LEVEL 5 CLEARANCE &nbsp;•&nbsp; EYES ONLY &nbsp;•&nbsp;</span>
+        </div>
+
+        <div
+          className="stamp"
+          onClick={handleStamp}
+          onKeyDown={e => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleStamp();
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Top secret stamp. Press five times for a secret."
+        >
+          TOP SECRET
+        </div>
+
+        <h1
+          className="h-hero glitch"
+          data-text={"Hey " + CONFIG.herName + "! 👀"}
+          aria-label={"Hey " + CONFIG.herName + "! 👀"}
+          style={{ textAlign: "center" }}
+        >
+          {"Hey " + CONFIG.herName + "! 👀"}
+        </h1>
+
+        <p className="lead" style={{ textAlign: "center", maxWidth: "46ch" }}>
+          {CONFIG.messages.accessLine1}<br />
+          <strong style={{ color: "var(--text)", fontWeight: 600 }}>{CONFIG.messages.accessLine2}</strong>
+        </p>
+
+        <div className="terminal" style={{ textAlign: "center" }}>
+          {typed}<span className="caret">&nbsp;</span>
+        </div>
+
+        <button className="btn" onClick={onStart}>
+          Accept Mission
+        </button>
+
+        <div style={{ marginTop: "clamp(10px,3vw,26px)", width: "100%", textAlign: "center" }}>
+          {cd.status === "before" && (
+            <>
+              <div className="tiny" style={{ marginBottom: 14 }}>Mission unlocks in</div>
+              <div className="countdown" role="timer" aria-live="off">
+                <div className="cd-cell"><div className="cd-num">{pad2(cd.days)}</div><div className="cd-lbl">Days</div></div>
+                <div className="cd-cell"><div className="cd-num">{pad2(cd.hours)}</div><div className="cd-lbl">Hours</div></div>
+                <div className="cd-cell"><div className="cd-num">{pad2(cd.minutes)}</div><div className="cd-lbl">Minutes</div></div>
+                <div className="cd-cell"><div className="cd-num">{pad2(cd.seconds)}</div><div className="cd-lbl">Seconds</div></div>
+              </div>
+            </>
+          )}
+
+          {cd.status === "today" && (
+            <div className="pill-today" role="status">🎉 IT'S TODAY — MISSION IS LIVE 🎉</div>
+          )}
+
+          {cd.status === "after" && (
+            <div className="pill-today" role="status">🎂 THE MISSION HAS BEEN COMPLETED — HAPPY BIRTHDAY {CONFIG.herName.toUpperCase()}!</div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 2 — MISSION BRIEFING  ==============
+   ============================================================ */
+function BriefingScene({ onNext }){
+  const [intelIndex, setIntelIndex] = useState(-1);
+
+  return (
+    <div className="scene">
+      <div className="wrap" style={{ display: "grid", gap: "clamp(20px,4vw,34px)" }}>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "clamp(16px,4vw,34px)", flexWrap: "wrap", justifyContent: "center" }}>
+          <div className="robot-column">
+            <button
+              className="robot-control"
+              onClick={() => {
+                setIntelIndex(index => (index + 1) % CONFIG.messages.robotIntel.length);
+                Audio.sfx.pick();
+              }}
+              aria-label="Ask the briefing robot for an intel update"
+              title="Request an intel update"
+            >
+              <Robot />
+            </button>
+            <span className="tiny">Tap for intel</span>
+            {intelIndex >= 0 && (
+              <p className="robot-bubble" role="status" aria-live="polite">
+                {CONFIG.messages.robotIntel[intelIndex]}
+              </p>
+            )}
+          </div>
+          <div style={{ flex: "1 1 260px", minWidth: 240 }}>
+            <div className="eyebrow">Mission Briefing // File 001</div>
+            <h2 className="h-sec" style={{ marginTop: 10 }}>
+              Agent <span className="glow-blue">{CONFIG.herName.toUpperCase()}</span>, you have been selected.
+            </h2>
+            <p className="lead" style={{ marginTop: 12 }}>
+              This is not a drill. This is not a normal Tuesday. Read the file carefully — there will be no second briefing.
+            </p>
+          </div>
+        </div>
+
+        <div className="glass">
+          <div className="report-row">
+            <div className="report-key">Agent</div>
+            <div className="report-val glow-blue">{CONFIG.herName.toUpperCase()}</div>
+          </div>
+          <div className="report-row">
+            <div className="report-key">Mission</div>
+            <div className="report-val">SURVIVE ANOTHER YEAR</div>
+          </div>
+          <div className="report-row">
+            <div className="report-key">Priority</div>
+            <div className="report-val glow-pink">EXTREMELY IMPORTANT</div>
+          </div>
+          <div className="report-row">
+            <div className="report-key">Difficulty</div>
+            <div className="report-val">UNKNOWN</div>
+          </div>
+          <div className="report-row">
+            <div className="report-key">Backup</div>
+            <div className="report-val">Cake (in reserve)</div>
+          </div>
+          <div className="report-row" style={{ borderBottom: 0 }}>
+            <div className="report-key">Objective</div>
+            <div className="report-val" style={{ width: "100%" }}>
+              <ul className="objectives" style={{ marginTop: 10 }}>
+                {CONFIG.messages.briefingObjective.map((o, i) => (
+                  <li key={i}><span className="dot">{i + 1}</span><span>{o}</span></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ textAlign: "center" }}>
+          <button className="btn" onClick={onNext}>Begin Assessment →</button>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 3 — THE QUIZ  ======================
+   ============================================================ */
+function QuizScene({ onDone }){
+  const questions = CONFIG.quiz;
+  const [index, setIndex] = useState(0);
+  const [picked, setPicked] = useState(null);
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+
+  const q = questions[index];
+  const total = questions.length;
+  const progress = finished ? 100 : (index / total) * 100;
+
+  const rank = useMemo(() => {
+    let r = CONFIG.ranks[0];
+    for (const item of CONFIG.ranks) if (score >= item.min) r = item;
+    return r;
+  }, [score]);
+
+  function choose(optIdx){
+    if (picked !== null) return;
+    const opt = q.options[optIdx];
+    setPicked(optIdx);
+    setScore(s => s + opt.points);
+
+    if (opt.points >= 3) Audio.sfx.good();
+    else if (opt.points === 2) Audio.sfx.pick();
+    else Audio.sfx.bad();
+
+    timerRef.current = setTimeout(() => {
+      if (index + 1 >= total){
+        setFinished(true);
+        Audio.sfx.unlock();
+      } else {
+        setIndex(i => i + 1);
+        setPicked(null);
+      }
+    }, 1500);
+  }
+
+  if (finished){
+    return (
+      <div className="scene">
+        <div className="wrap-sm glass" style={{ textAlign: "center" }}>
+          <div className="eyebrow">Assessment complete</div>
+          <div className="score-big" style={{ margin: "18px 0 6px" }}>{score}<span style={{ fontSize: ".36em", opacity: .55 }}>/12</span></div>
+          <h2 className="h-sec glow-yellow" style={{ marginTop: 12 }}>{rank.label}</h2>
+          <p className="lead" style={{ marginTop: 12 }}>{rank.sub}</p>
+          <div style={{ marginTop: 26 }}>
+            <button className="btn" onClick={onDone}>Proceed to Puzzle →</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="scene">
+      <div className="wrap-sm" style={{ display: "grid", gap: 22 }}>
+
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
+            <span className="eyebrow">Birthday Assessment</span>
+            <span className="eyebrow" style={{ color: "var(--muted)" }}>{index + 1} / {total}</span>
+          </div>
+          <div className="quiz-progress" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress)}>
+            <i style={{ width: progress + "%" }} />
+          </div>
+        </div>
+
+        <div className="glass">
+          <h2 className="h-sec" style={{ fontSize: "clamp(18px,3.4vw,26px)", lineHeight: 1.32 }}>{q.q}</h2>
+
+          <div style={{ display: "grid", gap: 12, marginTop: 24 }}>
+            {q.options.map((opt, i) => {
+              const isPicked = picked === i;
+              const dim = picked !== null && !isPicked;
+              return (
+                <button
+                  key={i}
+                  className={"opt" + (isPicked ? " chosen" : "") + (dim ? " dim" : "")}
+                  onClick={() => choose(i)}
+                  disabled={picked !== null}
+                >
+                  <span className="key">{String.fromCharCode(65 + i)}</span>
+                  <span>{opt.text}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {picked !== null && (
+            <div className="reaction" role="status" aria-live="polite">
+              {q.options[picked].reaction}
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 4 — THE SECRET PUZZLE  =============
+   ============================================================ */
+const PUZZLE_OBJECTS = [
+  { id: "cake", emoji: "🎂", label: "The Cake" },
+  { id: "key",  emoji: "🗝️", label: "The Key" },
+  { id: "gift", emoji: "🎁", label: "The Gift" }
+];
+const DECOY_EMOJI = ["📎", "🧦", "🥔", "🧃", "🪑", "🧠", "🐸", "🍕", "🧊", "🪥", "👓", "🍄", "🧽", "🐛", "🥐", "🎈", "🧲", "🪣", "📚", "🎩"];
+
+function PuzzleScene({ onDone, onToast }){
+  const CELLS = 20;
+  const hintTimerRef = useRef(null);
+  const shakeTimerRef = useRef(null);
+
+  const [layout] = useState(() => {
+    const decoys = shuffle(DECOY_EMOJI).concat(shuffle(DECOY_EMOJI));
+    const targetPositions = shuffle(Array.from({ length: CELLS }, (_, i) => i)).slice(0, 3);
+    const arr = Array.from({ length: CELLS }, (_, i) => ({
+      idx: i,
+      decoy: decoys[i % decoys.length],
+      target: null,
+      revealed: false
+    }));
+    targetPositions.forEach((pos, k) => { arr[pos].target = PUZZLE_OBJECTS[k]; });
+    return arr;
+  });
+
+  const [cells, setCells] = useState(layout);
+  const [hintIdx, setHintIdx] = useState(null);
+  const [shakeIdx, setShakeIdx] = useState(null);
+  const [hintsUsed, setHintsUsed] = useState(0);
+
+  const found = cells.filter(c => c.revealed && c.target).length;
+  const searched = cells.filter(c => c.revealed).length;
+  const complete = found === 3;
+
+  useEffect(() => () => {
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    if (shakeTimerRef.current) clearTimeout(shakeTimerRef.current);
+  }, []);
+
+  useEffect(() => {
+    if (complete){
+      Audio.sfx.unlock();
+      FX.spawnConfetti(70);
+      const t = setTimeout(() => onToast("🔓 Vault unlocked. The gift is ready."), 400);
+      return () => clearTimeout(t);
+    }
+  }, [complete]);
+
+  function clickCell(cell){
+    if (cell.revealed || complete) return;
+    if (cell.target){
+      if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+      hintTimerRef.current = null;
+      setCells(prev => prev.map(c => c.idx === cell.idx ? { ...c, revealed: true } : c));
+      Audio.sfx.found();
+      setHintIdx(null);
+    } else {
+      setCells(prev => prev.map(c => c.idx === cell.idx ? { ...c, revealed: true } : c));
+      Audio.sfx.bad();
+      setShakeIdx(cell.idx);
+      if (shakeTimerRef.current) clearTimeout(shakeTimerRef.current);
+      shakeTimerRef.current = setTimeout(() => {
+        setShakeIdx(null);
+        shakeTimerRef.current = null;
+      }, 420);
+      const lines = [
+        "Nope. That's a sock. 🧦",
+        "Not it. Just disappointment in card form.",
+        "Empty. Like your fridge at 3am.",
+        "Nope, but nice try. Keep going.",
+        "Nothing here. The object is hiding better than your feelings."
+      ];
+      onToast(lines[Math.floor(Math.random() * lines.length)]);
+    }
+  }
+
+  function useHint(){
+    const remaining = cells.filter(c => c.target && !c.revealed);
+    if (!remaining.length) return;
+    const pick = remaining[Math.floor(Math.random() * remaining.length)];
+    setHintIdx(pick.idx);
+    setHintsUsed(h => h + 1);
+    Audio.sfx.pick();
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    hintTimerRef.current = setTimeout(() => {
+      setHintIdx(null);
+      hintTimerRef.current = null;
+    }, 2200);
+  }
+
+  return (
+    <div className="scene">
+      <div className="wrap-sm" style={{ display: "grid", gap: 22 }}>
+
+        <div style={{ textAlign: "center" }}>
+          <div className="eyebrow">Security Layer 3 of 3</div>
+          <h2 className="h-sec" style={{ marginTop: 10 }}>Find the <span className="glow-yellow">3 hidden objects</span></h2>
+          <p className="lead" style={{ marginTop: 10 }}>
+            They're hidden in the vault grid. Tap a tile to search it, or use a hint if the potato collection gets overwhelming.
+          </p>
+        </div>
+
+        <div className="found-chips">
+          {PUZZLE_OBJECTS.map(obj => {
+            const isFound = cells.some(c => c.target && c.target.id === obj.id && c.revealed);
+            return (
+              <span key={obj.id} className={"chip" + (isFound ? " on" : "")}>
+                <span>{isFound ? obj.emoji : "❔"}</span> {obj.label}
+              </span>
+            );
+          })}
+        </div>
+
+        <div className="grid-puzzle" role="group" aria-label="Vault grid">
+          {cells.map(cell => {
+            const isFound = cell.revealed && cell.target;
+            const isEmpty = cell.revealed && !cell.target;
+            let cls = "cell";
+            if (isFound) cls += " found";
+            if (isEmpty) cls += " empty";
+            if (hintIdx === cell.idx) cls += " hint";
+            if (shakeIdx === cell.idx) cls += " shake";
+
+            return (
+              <button
+                key={cell.idx}
+                className={cls}
+                onClick={() => clickCell(cell)}
+                disabled={cell.revealed || complete}
+                aria-label={cell.revealed ? (cell.target ? "Found " + cell.target.label : "Empty slot") : "Hidden slot " + (cell.idx + 1)}
+              >
+                {isFound
+                  ? <span className="seeker">{cell.target.emoji}</span>
+                  : isEmpty
+                    ? <span style={{ opacity: .5 }}>{cell.decoy}</span>
+                    : <span style={{ opacity: .18, fontSize: ".7em" }}>◆</span>}
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="tiny scan-status" role="status" aria-live="polite" aria-atomic="true">
+          Grid scan: {searched} / {CELLS} slots checked &middot; {found} / 3 objects recovered
+        </p>
+
+        <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+          {!complete ? (
+            <button className="btn-ghost" onClick={useHint}>
+              💡 Hint {hintsUsed > 0 ? "(" + hintsUsed + " used, no shame)" : "(no shame)"}
+            </button>
+          ) : (
+            <button className="btn" onClick={onDone}>Open the Vault →</button>
+          )}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 5 — THE BIG GIFT  ==================
+   ============================================================ */
+function GiftScene({ onNext }){
+  const [opened, setOpened] = useState(false);
+  const [showCake, setShowCake] = useState(false);
+  const [canContinue, setCanContinue] = useState(false);
+
+  function openGift(){
+    if (opened) return;
+    setOpened(true);
+    Audio.sfx.unlock();
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      setShowCake(true);
+      setCanContinue(true);
+      return;
+    }
+
+    setTimeout(() => FX.spawnConfetti(160), 120);
+    setTimeout(() => { Audio.sfx.fanfare(); FX.spawnFirework(window.innerWidth * 0.28, window.innerHeight * 0.32); }, 520);
+    setTimeout(() => FX.spawnFirework(window.innerWidth * 0.72, window.innerHeight * 0.28), 900);
+    setTimeout(() => FX.spawnFirework(window.innerWidth * 0.5, window.innerHeight * 0.24), 1350);
+    setTimeout(() => FX.spawnConfetti(120), 1600);
+
+    setTimeout(() => setShowCake(true), 900);
+    setTimeout(() => setCanContinue(true), 2400);
+  }
+
+  return (
+    <div className="scene">
+      <div className="wrap-sm" style={{ textAlign: "center", display: "grid", gap: 22, justifyItems: "center" }}>
+
+        {!opened && (
+          <>
+            <div className="eyebrow">Mission complete — reward unlocked</div>
+            <h2 className="h-sec">You've completed your mission. One last thing...</h2>
+            <p className="lead" style={{ maxWidth: "40ch" }}>Open your mysterious gift!</p>
+          </>
+        )}
+
+        <div
+          className={"gift-stage" + (opened ? " opened" : "")}
+          onClick={openGift}
+          role={opened ? "presentation" : "button"}
+          tabIndex={opened ? -1 : 0}
+          aria-label={opened ? "Gift opened" : "Open the gift box"}
+          onKeyDown={(e) => { if (!opened && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openGift(); } }}
+          style={{ cursor: opened ? "default" : "pointer" }}
+        >
+          <div className="gift-3d" aria-hidden="true">
+            <div className="lid">
+              <div className="bow" />
+            </div>
+            <div className="face f-front" />
+            <div className="face f-back" />
+            <div className="face f-right" />
+            <div className="face f-left" />
+            <div className="face f-bottom" />
+          </div>
+
+          {showCake && (
+            <div className="cake" style={{ position: "absolute" }} role="img" aria-label="Birthday cake with a lit candle">
+              <div className="candle"><div className="flame" /></div>
+              <div className="cake-tier top"><div className="cake-drip" /></div>
+              <div className="cake-tier mid"><div className="cake-drip" /></div>
+              <div className="cake-tier"><div className="cake-drip" /></div>
+              <div className="cake-plate" />
+            </div>
+          )}
+        </div>
+
+        {!opened && (
+          <div className="gift-hint tiny" style={{ color: "var(--yellow)" }}>
+            ↑ click the box ↑
+          </div>
+        )}
+
+        {canContinue && (
+          <button className="btn final-line" onClick={onNext}>Continue →</button>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 6 — FINAL REVEAL  ==================
+   ============================================================ */
+function RevealScene({ onNext }){
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    Audio.startMusic("warm");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      setPhase(3);
+      return;
+    }
+    const t1 = setTimeout(() => {
+      FX.spawnFirework(window.innerWidth * 0.28, window.innerHeight * 0.3, 48);
+    }, 180);
+    const t2 = setTimeout(() => {
+      FX.spawnFirework(window.innerWidth * 0.72, window.innerHeight * 0.27, 32);
+    }, 980);
+    const t3 = setTimeout(() => {
+      FX.spawnFirework(window.innerWidth * 0.5, window.innerHeight * 0.22, 18);
+    }, 1780);
+    const t4 = setTimeout(() => setPhase(1), 1450);
+    const t5 = setTimeout(() => setPhase(2), 3200);
+    const t6 = setTimeout(() => setPhase(3), 4800);
+
+    return () => [t1, t2, t3, t4, t5, t6].forEach(clearTimeout);
+  }, []);
+
+  const title = "Happy Birthday, " + CONFIG.herName + "! 🎂";
+
+  const balloons = useMemo(() => Array.from({ length: 10 }, (_, i) => ({
+    id: i,
+    left: Math.random() * Math.max(0, window.innerWidth - 52) / window.innerWidth * 100,
+    delay: Math.random() * 2.4,
+    duration: 14 + Math.random() * 6,
+    size: 0.65 + Math.random() * 0.45,
+    drift: (Math.random() - 0.5) * 200,
+    color: ["#f0c7a2", "#d99b91", "#d5bc8e", "#c5b2ca", "#e7d5bd"][i % 5]
+  })), []);
+
+  return (
+    <div className="scene scene-reveal">
+      {balloons.map(b => (
+        <div
+          key={b.id}
+          className={"balloon" + (phase >= 2 ? " gentle" : "")}
+          aria-hidden="true"
+          style={{
+            left: b.left + "vw",
+            width: (44 * b.size) + "px",
+            height: (56 * b.size) + "px",
+            background: "radial-gradient(circle at 32% 26%, #ffffffcc, " + b.color + " 58%, " + b.color + " 100%)",
+            animationDelay: b.delay + "s",
+            animationDuration: b.duration + "s",
+            "--drift": b.drift + "px"
+          }}
+        />
+      ))}
+
+      <div className="wrap-sm" style={{ textAlign: "center", display: "grid", gap: "clamp(20px,4vw,34px)", justifyItems: "center" }}>
+        <h1 className="title-hb warm-title" aria-label={title} style={{ marginTop: 8 }}>
+          {title}
+        </h1>
+
+        {phase >= 1 && (
+          <div>
+            <p className="birthday-message">
+              {CONFIG.messages.birthdayMessage}
+            </p>
+          </div>
+        )}
+
+        {phase >= 2 && (
+          <p className="birthday-signature">
+            {CONFIG.messages.birthdaySignature}
+          </p>
+        )}
+
+        {phase >= 3 && (
+          <div className="reveal-actions">
+            <span className="reveal-status">
+              {birthdayLabel} &middot; MISSION COMPLETE
+            </span>
+            <button className="btn-ghost certificate-link" onClick={onNext}>
+              Keep your birthday certificate →
+            </button>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  SCENE 7 — CERTIFICATE  ===================
+   ============================================================ */
+function drawCertificate(canvas){
+  const W = 1200, H = 800;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  const c = canvas.getContext("2d");
+  c.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  // Background
+  const g = c.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, "#0b0a24");
+  g.addColorStop(0.5, "#170d38");
+  g.addColorStop(1, "#08061a");
+  c.fillStyle = g;
+  c.fillRect(0, 0, W, H);
+
+  // Glow blobs
+  const blobs = [
+    { x: 140, y: 90, r: 340, col: "rgba(56,232,255,0.18)" },
+    { x: 1060, y: 720, r: 380, col: "rgba(255,78,205,0.16)" },
+    { x: 620, y: 400, r: 300, col: "rgba(120,80,255,0.10)" }
+  ];
+  blobs.forEach(b => {
+    const rg = c.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+    rg.addColorStop(0, b.col);
+    rg.addColorStop(1, "rgba(0,0,0,0)");
+    c.fillStyle = rg;
+    c.fillRect(0, 0, W, H);
+  });
+
+  // Grid
+  c.strokeStyle = "rgba(255,255,255,0.035)";
+  c.lineWidth = 1;
+  for (let x = 0; x <= W; x += 48){ c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); }
+  for (let y = 0; y <= H; y += 48){ c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }
+
+  // Borders
+  c.strokeStyle = "rgba(56,232,255,0.55)";
+  c.lineWidth = 3;
+  c.strokeRect(42, 42, W - 84, H - 84);
+  c.strokeStyle = "rgba(255,78,205,0.35)";
+  c.lineWidth = 1.5;
+  c.strokeRect(60, 60, W - 120, H - 120);
+
+  // Corner marks
+  const corner = 30;
+  c.strokeStyle = "rgba(255,225,77,0.85)";
+  c.lineWidth = 3;
+  const corners = [[42, 42, 1, 1], [W - 42, 42, -1, 1], [42, H - 42, 1, -1], [W - 42, H - 42, -1, -1]];
+  corners.forEach(([x, y, dx, dy]) => {
+    c.beginPath(); c.moveTo(x + dx * corner, y); c.lineTo(x, y); c.lineTo(x, y + dy * corner); c.stroke();
+  });
+
+  function spaced(text, x, y, spacing, align){
+    c.save();
+    let total = 0;
+    for (const ch of text) total += c.measureText(ch).width + spacing;
+    total -= spacing;
+    let cx = align === "center" ? x - total / 2 : x;
+    for (const ch of text){
+      c.fillText(ch, cx, y);
+      cx += c.measureText(ch).width + spacing;
+    }
+    c.restore();
+  }
+
+  c.textBaseline = "alphabetic";
+
+  // Header
+  c.fillStyle = "rgba(148,162,201,0.9)";
+  c.font = "600 16px Orbitron, sans-serif";
+  spaced("BUREAU OF VERY SERIOUS CELEBRATIONS", W / 2, 128, 5, "center");
+
+  // Title
+  c.fillStyle = "#38e8ff";
+  c.shadowColor = "rgba(56,232,255,0.75)";
+  c.shadowBlur = 34;
+  c.font = "900 62px Orbitron, sans-serif";
+  spaced("OFFICIALLY CERTIFIED", W / 2, 212, 4, "center");
+  c.shadowBlur = 0;
+
+  // Divider
+  const dg = c.createLinearGradient(240, 0, W - 240, 0);
+  dg.addColorStop(0, "rgba(56,232,255,0)");
+  dg.addColorStop(0.5, "rgba(255,78,205,0.9)");
+  dg.addColorStop(1, "rgba(56,232,255,0)");
+  c.strokeStyle = dg;
+  c.lineWidth = 2;
+  c.beginPath(); c.moveTo(240, 246); c.lineTo(W - 240, 246); c.stroke();
+
+  // Name label
+  c.fillStyle = "rgba(148,162,201,0.85)";
+  c.font = "600 15px Orbitron, sans-serif";
+  spaced("NAME OF THE LEGEND", W / 2, 306, 6, "center");
+
+  // Name
+  c.fillStyle = "#ffffff";
+  c.shadowColor = "rgba(255,78,205,0.8)";
+  c.shadowBlur = 40;
+  c.font = "900 96px Orbitron, sans-serif";
+  spaced(CONFIG.herName.toUpperCase(), W / 2, 400, 10, "center");
+  c.shadowBlur = 0;
+
+  // Rows
+  const rows = [
+    ["ACHIEVEMENT", "BIRTHDAY LEGEND"],
+    ["STATUS", "LEVEL UNLOCKED"],
+    ["DATE", birthdayLabel]
+  ];
+  let y = 480;
+  rows.forEach(([k, v]) => {
+    c.textAlign = "left";
+    c.fillStyle = "rgba(148,162,201,0.8)";
+    c.font = "600 15px Orbitron, sans-serif";
+    spaced(k, 210, y, 5, "left");
+
+    c.textAlign = "right";
+    c.fillStyle = "#ffe14d";
+    c.shadowColor = "rgba(255,225,77,0.6)";
+    c.shadowBlur = 22;
+    c.font = "800 30px Orbitron, sans-serif";
+    c.fillText(v, W - 210, y + 2);
+    c.shadowBlur = 0;
+
+    c.strokeStyle = "rgba(255,255,255,0.08)";
+    c.lineWidth = 1;
+    c.beginPath(); c.moveTo(210, y + 26); c.lineTo(W - 210, y + 26); c.stroke();
+    y += 78;
+  });
+
+  // Signature area
+  c.textAlign = "center";
+  c.fillStyle = "rgba(148,162,201,0.85)";
+  c.font = "600 14px Orbitron, sans-serif";
+  spaced("ISSUED BY", W / 2, 700, 5, "center");
+
+  c.fillStyle = "#4dffa6";
+  c.shadowColor = "rgba(77,255,166,0.6)";
+  c.shadowBlur = 22;
+  c.font = "800 26px Orbitron, sans-serif";
+  spaced(CONFIG.senderName.toUpperCase(), W / 2, 736, 4, "center");
+  c.shadowBlur = 0;
+
+  // Seal
+  c.save();
+  c.translate(W - 130, H - 130);
+  c.beginPath();
+  c.arc(0, 0, 52, 0, Math.PI * 2);
+  const sg = c.createLinearGradient(-52, -52, 52, 52);
+  sg.addColorStop(0, "rgba(255,78,205,0.28)");
+  sg.addColorStop(1, "rgba(56,232,255,0.20)");
+  c.fillStyle = sg;
+  c.fill();
+  c.strokeStyle = "rgba(255,225,77,0.85)";
+  c.lineWidth = 2.5;
+  c.stroke();
+  c.fillStyle = "#ffe14d";
+  c.font = "900 34px Outfit, sans-serif";
+  c.textAlign = "center";
+  c.textBaseline = "middle";
+  c.fillText("🎂", 0, 2);
+  c.restore();
+}
+
+function CertificateScene({ onReplay }){
+  const canvasRef = useRef(null);
+  const [downloading, setDownloading] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const render = () => {
+      if (!cancelled && canvasRef.current) drawCertificate(canvasRef.current);
+    };
+    render();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+    return () => { cancelled = true; };
+  }, []);
+
+  function download(){
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    setDownloading(true);
+    Audio.sfx.pick();
+
+    const finish = (url) => {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "OPERATION-" + CONFIG.herName.toUpperCase() + "-CERTIFICATE.png";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setDownloading(false);
+    };
+
+    if (canvas.toBlob){
+      canvas.toBlob(blob => {
+        if (!blob){ finish(canvas.toDataURL("image/png")); return; }
+        const url = URL.createObjectURL(blob);
+        finish(url);
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+      }, "image/png");
+    } else {
+      finish(canvas.toDataURL("image/png"));
+    }
+  }
+
+  return (
+    <div className="scene">
+      <div className="wrap" style={{ display: "grid", gap: 22, justifyItems: "center" }}>
+
+        <div style={{ textAlign: "center" }}>
+          <div className="eyebrow">Final step</div>
+          <h2 className="h-sec" style={{ marginTop: 10 }}>
+            Your <span className="glow-yellow">official</span> document
+          </h2>
+          <p className="lead" style={{ marginTop: 10 }}>
+            Print it. Frame it. Show it to people who doubt you.
+          </p>
+        </div>
+
+        <div className="cert-frame" style={{ width: "min(880px,100%)" }}>
+          <canvas ref={canvasRef} aria-label={"Birthday certificate for " + CONFIG.herName} role="img" />
+        </div>
+
+        <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
+          <button className="btn" onClick={download} disabled={downloading}>
+            {downloading ? "Preparing..." : "⬇ Download Certificate"}
+          </button>
+          <button className="btn-ghost" onClick={onReplay}>↻ Replay the Mission</button>
+        </div>
+
+        <p className="tiny" style={{ textAlign: "center", opacity: .6 }}>
+          No data collected. No cookies. Just cake.
+        </p>
+
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   ================  APP  =====================================
+   ============================================================ */
+const SCENES = ["access", "briefing", "quiz", "puzzle", "gift", "reveal", "certificate"];
+
+function App(){
+  const [scene, setScene] = useState("access");
+  const [muted, setMuted] = useState(false);
+  const [toast, setToast] = useState("");
+  const [audioUnlocked, setAudioUnlocked] = useState(false);
+  const mainRef = useRef(null);
+  const toastTimer = useRef(null);
+
+  const showToast = useCallback((msg) => {
+    setToast(msg);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(""), 3400);
+  }, []);
+
+  useEffect(() => {
+    FX.init();
+    const unlock = () => {
+      if (!audioUnlocked){
+        Audio.init();
+        Audio.startMusic();
+        setAudioUnlocked(true);
+      }
+    };
+    window.addEventListener("pointerdown", unlock, { once: true });
+    window.addEventListener("keydown", unlock, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("keydown", unlock);
+    };
+  }, [audioUnlocked]);
+
+  useEffect(() => {
+    const onVis = () => {
+      if (document.hidden) Audio.stopMusic();
+      else if (audioUnlocked && !muted) Audio.startMusic();
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, [audioUnlocked, muted]);
+
+  useEffect(() => {
+    const heading = mainRef.current && mainRef.current.querySelector("h1, h2");
+    if (!heading) return;
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+  }, [scene]);
+
+  function toggleMute(){
+    const next = !muted;
+    setMuted(next);
+    Audio.setMuted(next);
+    if (!next && audioUnlocked) Audio.startMusic();
+  }
+
+  const go = useCallback((next) => {
+    Audio.sfx.whoosh();
+    setScene(next);
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+  }, []);
+
+  const replay = useCallback(() => {
+    Audio.sfx.whoosh();
+    Audio.startMusic("playful");
+    setScene("access");
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+  }, []);
+
+  const progressPct = (SCENES.indexOf(scene) / (SCENES.length - 1)) * 100;
+
+  let content = null;
+  if (scene === "access"){
+    content = <AccessScene onStart={() => go("briefing")} onEgg={showToast} />;
+  } else if (scene === "briefing"){
+    content = <BriefingScene onNext={() => go("quiz")} />;
+  } else if (scene === "quiz"){
+    content = <QuizScene onDone={() => go("puzzle")} />;
+  } else if (scene === "puzzle"){
+    content = <PuzzleScene onDone={() => go("gift")} onToast={showToast} />;
+  } else if (scene === "gift"){
+    content = <GiftScene onNext={() => go("reveal")} />;
+  } else if (scene === "reveal"){
+    content = <RevealScene onNext={() => go("certificate")} />;
+  } else {
+    content = <CertificateScene onReplay={replay} />;
+  }
+
+  return (
+    <React.Fragment>
+      <Starfield />
+      <div
+        className={"warm-wash" + (scene === "reveal" || scene === "certificate" ? " active" : "")}
+        aria-hidden="true"
+      />
+
+      <div className="progress-rail" aria-hidden="true">
+        <div className="progress-fill" style={{ width: progressPct + "%" }} />
+      </div>
+
+      <div className="topbar">
+        <div className="brand">OPERATION {CONFIG.herName.toUpperCase()}</div>
+        <button
+          className="mute-btn"
+          onClick={toggleMute}
+          aria-pressed={muted}
+          aria-label={muted ? "Unmute sound" : "Mute sound"}
+        >
+          <span aria-hidden="true">{muted ? "🔇" : "🔊"}</span>
+          {muted ? "Muted" : "Sound On"}
+        </button>
+      </div>
+
+      <main key={scene} ref={mainRef}>{content}</main>
+
+      <Toast text={toast} />
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
